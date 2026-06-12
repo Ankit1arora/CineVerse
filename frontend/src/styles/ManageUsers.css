@@ -1,0 +1,70 @@
+/* ==================== MANAGE USERS PAGE ==================== */
+.users-table {
+  overflow-x: auto;
+}
+
+.users-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.users-table thead {
+  background-color: var(--color-dark-surface);
+  border-bottom: 1px solid var(--color-dark-border);
+}
+
+.users-table th {
+  padding: var(--spacing-md);
+  text-align: left;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  font-size: var(--font-size-sm);
+  text-transform: uppercase;
+}
+
+.users-table td {
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--color-dark-border);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.users-table tr:hover {
+  background-color: rgba(255, 107, 53, 0.05);
+}
+
+.role-badge {
+  display: inline-block;
+  background-color: rgba(0, 78, 137, 0.2);
+  color: var(--color-secondary-light);
+  padding: 4px 12px;
+  border-radius: var(--border-radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+}
+
+.status-active {
+  background-color: rgba(0, 208, 132, 0.2);
+  color: var(--color-success);
+}
+
+.status-inactive {
+  background-color: rgba(255, 71, 87, 0.2);
+  color: var(--color-danger);
+}
+
+.action-buttons {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+@media (max-width: 1024px) {
+  .users-table {
+    font-size: var(--font-size-xs);
+  }
+
+  .users-table th,
+  .users-table td {
+    padding: var(--spacing-sm);
+  }
+}
