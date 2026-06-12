@@ -8,3 +8,14 @@ dist
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+# Frontend
+node_modules/
+dist/
+
+# Java / Maven
+target/
+*.class
+
+# Environment files
+.env
+.env.*
