@@ -26,6 +26,13 @@ public class GlobalExceptionHandler {
                 .body(StandardResponse.error(ex.getMessage()));
     }
 
+    // Handles the new SeatLockedException thrown when Redis has a live lock on the seat
+    @ExceptionHandler(SeatLockedException.class)
+    public ResponseEntity<StandardResponse<Void>> handleSeatLockedException(SeatLockedException ex) {
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body(StandardResponse.error(ex.getMessage()));
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<StandardResponse<Map<String, String>>> handleValidationExceptions(MethodArgumentNotValidException ex) {
         Map<String, String> errors = new HashMap<>();

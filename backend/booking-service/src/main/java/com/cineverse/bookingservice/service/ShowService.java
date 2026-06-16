@@ -9,6 +9,7 @@ import com.cineverse.bookingservice.repository.SeatRepository;
 import com.cineverse.bookingservice.repository.ShowRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -78,6 +79,9 @@ public class ShowService {
         return showRepository.findAll();
     }
 
+    // @Cacheable: First call hits the DB and stores result in Redis under key "shows::id"
+    // Subsequent calls with the same id are served directly from Redis cache
+    @Cacheable(value = "shows", key = "#id")
     public Show getShowById(Long id) {
         return showRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Show not found"));
