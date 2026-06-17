@@ -1,0 +1,54 @@
+# ============================================================
+# CineVerse - Frontend CI/CD Workflow
+# ============================================================
+# This file tells GitHub Actions to automatically:
+#   1. Install Node.js
+#   2. Install project dependencies
+#   3. Build the React frontend
+# ...every time code is pushed to main or a pull request is opened.
+# ============================================================
+
+name: Frontend CI  # Name shown in the GitHub Actions tab
+
+# ── When does this workflow run? ──────────────────────────────
+on:
+  push:
+    branches:
+      - main          # Runs when you push to the main branch
+  pull_request:
+    branches:
+      - main          # Runs when someone opens a PR targeting main
+
+# ── Jobs (the actual tasks) ───────────────────────────────────
+jobs:
+  build:
+    name: Build Frontend         # Label shown in GitHub Actions UI
+    runs-on: ubuntu-latest       # Use the latest Ubuntu virtual machine
+
+    steps:
+      # Step 1: Download (checkout) your repository code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Install Node.js version 20
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'                   # Cache npm packages to speed up future runs
+          cache-dependency-path: frontend/package-lock.json
+
+      # Step 3: Move into the frontend folder and install dependencies
+      - name: Install dependencies
+        working-directory: frontend      # All commands below run inside /frontend
+        run: npm install
+
+      # Step 4: Build the React project (creates the /dist folder)
+      - name: Build project
+        working-directory: frontend
+        run: npm run build
+
+      # Step 5: (Optional) Show what was built — helpful for debugging
+      - name: Show build output
+        working-directory: frontend
+        run: ls -la dist/
