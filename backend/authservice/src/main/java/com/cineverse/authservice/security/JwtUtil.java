@@ -2,7 +2,6 @@ package com.cineverse.authservice.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -50,7 +49,7 @@ public class JwtUtil {
                 .claim("role", role)  // Add role as a claim
                 .issuedAt(now)  // When token was created
                 .expiration(expiryDate)  // When token expires
-                .signWith(key, SignatureAlgorithm.HS256)  // Sign with secret key
+                .signWith(key)  // Sign with secret key (algorithm inferred from key)
                 .compact();  // Convert to string
     }
     
@@ -63,11 +62,12 @@ public class JwtUtil {
     private Claims getClaimsFromToken(String token) {
         SecretKey key = Keys.hmacShaKeyFor(jwtSecret.getBytes());
         
-        return Jwts.parserBuilder()
-                .setSigningKey(key)
+        // JJWT 0.12.x API: parser() + verifyWith() + parseSignedClaims()
+        return Jwts.parser()
+                .verifyWith(key)
                 .build()
-                .parseClaimsJws(token)
-                .getBody();
+                .parseSignedClaims(token)
+                .getPayload();
     }
     
     /**
@@ -118,10 +118,11 @@ public class JwtUtil {
      */
     public boolean validateToken(String token) {
         try {
-            Jwts.parserBuilder()
-                    .setSigningKey(Keys.hmacShaKeyFor(jwtSecret.getBytes()))
+            // JJWT 0.12.x API
+            Jwts.parser()
+                    .verifyWith(Keys.hmacShaKeyFor(jwtSecret.getBytes()))
                     .build()
-                    .parseClaimsJws(token);
+                    .parseSignedClaims(token);
             
             // If parsing succeeds and token is not expired, it's valid
             return !isTokenExpired(token);

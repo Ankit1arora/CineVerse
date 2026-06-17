@@ -1,0 +1,15 @@
+C:\Users\ankit\Desktop\CineVerse\backend\movie-service\src\main\java\com\cineverse\movieservice\entity\Movie.java
+C:\Users\ankit\Desktop\CineVerse\backend\movie-service\src\main\java\com\cineverse\movieservice\dto\StandardResponse.java
+C:\Users\ankit\Desktop\CineVerse\backend\movie-service\src\main\java\com\cineverse\movieservice\dto\ReviewDto.java
+C:\Users\ankit\Desktop\CineVerse\backend\movie-service\src\main\java\com\cineverse\movieservice\controller\ReviewController.java
+C:\Users\ankit\Desktop\CineVerse\backend\movie-service\src\main\java\com\cineverse\movieservice\exception\MovieNotFoundException.java
+C:\Users\ankit\Desktop\CineVerse\backend\movie-service\src\main\java\com\cineverse\movieservice\exception\GlobalExceptionHandler.java
+C:\Users\ankit\Desktop\CineVerse\backend\movie-service\src\main\java\com\cineverse\movieservice\service\MovieService.java
+C:\Users\ankit\Desktop\CineVerse\backend\movie-service\src\main\java\com\cineverse\movieservice\config\SecurityConfig.java
+C:\Users\ankit\Desktop\CineVerse\backend\movie-service\src\main\java\com\cineverse\movieservice\dto\MovieDto.java
+C:\Users\ankit\Desktop\CineVerse\backend\movie-service\src\main\java\com\cineverse\movieservice\repository\MovieRepository.java
+C:\Users\ankit\Desktop\CineVerse\backend\movie-service\src\main\java\com\cineverse\movieservice\service\ReviewService.java
+C:\Users\ankit\Desktop\CineVerse\backend\movie-service\src\main\java\com\cineverse\movieservice\controller\MovieController.java
+C:\Users\ankit\Desktop\CineVerse\backend\movie-service\src\main\java\com\cineverse\movieservice\MovieServiceApplication.java
+C:\Users\ankit\Desktop\CineVerse\backend\movie-service\src\main\java\com\cineverse\movieservice\repository\ReviewRepository.java
+C:\Users\ankit\Desktop\CineVerse\backend\movie-service\src\main\java\com\cineverse\movieservice\entity\Review.java

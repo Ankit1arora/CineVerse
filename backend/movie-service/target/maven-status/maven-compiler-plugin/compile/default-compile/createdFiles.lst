@@ -1,0 +1,15 @@
+com\cineverse\movieservice\service\ReviewService.class
+com\cineverse\movieservice\entity\Review.class
+com\cineverse\movieservice\entity\Movie.class
+com\cineverse\movieservice\exception\GlobalExceptionHandler.class
+com\cineverse\movieservice\dto\StandardResponse.class
+com\cineverse\movieservice\config\SecurityConfig.class
+com\cineverse\movieservice\MovieServiceApplication.class
+com\cineverse\movieservice\repository\MovieRepository.class
+com\cineverse\movieservice\dto\ReviewDto.class
+com\cineverse\movieservice\service\MovieService.class
+com\cineverse\movieservice\exception\MovieNotFoundException.class
+com\cineverse\movieservice\controller\ReviewController.class
+com\cineverse\movieservice\controller\MovieController.class
+com\cineverse\movieservice\dto\MovieDto.class
+com\cineverse\movieservice\repository\ReviewRepository.class

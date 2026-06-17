@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Menu, X, LogOut, User, Film } from 'lucide-react';
+import { Menu, X, LogOut, User, Film, Home, Clapperboard } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { getDashboardPath, ROLE_LABELS } from '../../utils/helpers';
 import '../styles/Navbar.css';
@@ -42,6 +42,16 @@ const Navbar = () => {
 
         {/* Menu */}
         <div className={`navbar-menu ${isMenuOpen ? 'active' : ''}`}>
+          {/* Always-visible links */}
+          <Link to="/" className="nav-link" onClick={() => setIsMenuOpen(false)}>
+            <Home size={16} />
+            Home
+          </Link>
+          <Link to="/movies" className="nav-link" onClick={() => setIsMenuOpen(false)}>
+            <Clapperboard size={16} />
+            Movies
+          </Link>
+
           {isAuthenticated ? (
             <>
               <div className="navbar-user-info">

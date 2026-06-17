@@ -11,7 +11,7 @@ const NotFound = () => {
         <Search className="error-icon" size={64} />
         <h1>404 - Page Not Found</h1>
         <p>Sorry, the page you're looking for doesn't exist.</p>
-        <Link to="/login">
+        <Link to="/">
           <Button variant="primary">Go Home</Button>
         </Link>
       </div>

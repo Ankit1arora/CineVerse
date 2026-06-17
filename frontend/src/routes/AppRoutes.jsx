@@ -2,6 +2,9 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import ProtectedRoute from './ProtectedRoute';
 
+// Home
+import HomePage from '../pages/user/HomePage';
+
 // Auth Pages
 import Login from '../pages/auth/Login';
 import Register from '../pages/auth/Register';
@@ -31,13 +34,26 @@ import Unauthorized from '../pages/Unauthorized';
 const AppRoutes = () => {
   return (
     <Routes>
-      {/* Public Routes */}
+      {/* ── Home (public) ── */}
+      <Route path="/" element={<HomePage />} />
+
+      {/* ── Auth (public) ── */}
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/unauthorized" element={<Unauthorized />} />
-      <Route path="*" element={<NotFound />} />
 
-      {/* User Routes */}
+      {/* ── Public movie browsing (no auth required) ── */}
+      {/* Unauthenticated users can view; booking inside enforces auth */}
+      <Route path="/movies" element={<MoviesList />} />
+      <Route path="/movie/:id" element={<MovieDetails />} />
+
+      {/* ── Booking alias (protected) ── */}
+      <Route
+        path="/booking"
+        element={<ProtectedRoute element={<Bookings />} requiredRoles={['user']} />}
+      />
+
+      {/* ── User Routes (protected) ── */}
       <Route
         path="/user/dashboard"
         element={<ProtectedRoute element={<UserDashboard />} requiredRoles={['user']} />}
@@ -59,32 +75,24 @@ const AppRoutes = () => {
         element={<ProtectedRoute element={<Bookings />} requiredRoles={['user']} />}
       />
 
-      {/* Theatre Owner Routes */}
+      {/* ── Theatre Owner Routes ── */}
       <Route
         path="/theatre/dashboard"
-        element={
-          <ProtectedRoute element={<TheatreDashboard />} requiredRoles={['theatre_owner']} />
-        }
+        element={<ProtectedRoute element={<TheatreDashboard />} requiredRoles={['theatre_owner']} />}
       />
       <Route
         path="/theatre/shows"
-        element={
-          <ProtectedRoute element={<ManageShows />} requiredRoles={['theatre_owner']} />
-        }
+        element={<ProtectedRoute element={<ManageShows />} requiredRoles={['theatre_owner']} />}
       />
       <Route
         path="/theatre/add-movie"
-        element={
-          <ProtectedRoute element={<AddMovie />} requiredRoles={['theatre_owner']} />
-        }
+        element={<ProtectedRoute element={<AddMovie />} requiredRoles={['theatre_owner']} />}
       />
 
-      {/* Admin Routes */}
+      {/* ── Admin Routes ── */}
       <Route
         path="/admin/dashboard"
-        element={
-          <ProtectedRoute element={<AdminDashboard />} requiredRoles={['admin']} />
-        }
+        element={<ProtectedRoute element={<AdminDashboard />} requiredRoles={['admin']} />}
       />
       <Route
         path="/admin/users"
@@ -98,6 +106,9 @@ const AppRoutes = () => {
         path="/admin/analytics"
         element={<ProtectedRoute element={<Analytics />} requiredRoles={['admin']} />}
       />
+
+      {/* ── 404 catch-all (must be last) ── */}
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 };
